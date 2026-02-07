@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Rose Day ❤️</title>
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+font-family:'Poppins', sans-serif;
+background:linear-gradient(135deg,#ff4d6d,#ff758f,#ff8fab,#ffc2d1);
+color:#ffe8b6;
+}
+
+/* SLIDES */
+
+.container{
+display:flex;
+width:400%;
+transition:1s;
+}
+
+.slide{
+width:100vw;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+/* buttons */
+
+.btn{
+margin-top:30px;
+padding:15px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(135deg,#ffd700,#fff2b2);
+color:#b3003c;
+font-size:18px;
+cursor:pointer;
+}
+
+/* envelope */
+
+.envelope{
+width:250px;
+height:150px;
+background:linear-gradient(135deg,#ff758f,#ff4d6d);
+border-radius:12px;
+display:flex;
+justify-content:center;
+align-items:center;
+box-shadow:0 0 25px rgba(255,255,255,0.4);
+cursor:pointer;
+}
+
+/* falling roses */
+
+.rose{
+position:fixed;
+top:-50px;
+font-size:22px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container" id="slides">
+
+<!-- SLIDE 1 -->
+
+<div class="slide">
+
+<h1>🌹 Happy Rose Day Love ❤️ 🌹</h1>
+
+<p>Swipe or Tap to Begin 💕</p>
+
+<button class="btn" onclick="next()">Start 💌</button>
+
+</div>
+
+<!-- SLIDE 2 ENVELOPE -->
+
+<div class="slide">
+
+<div class="envelope" onclick="next()">
+
+💌 Tap to Open Surprise
+
+</div>
+
+<p>To: Vikram ❤️ <br> From: Nazneen 🌹</p>
+
+</div>
+
+<!-- SLIDE 3 MESSAGE -->
+
+<div class="slide">
+
+<p>
+
+All I can think of right now is how to be the best and bestest girl I can be for you ❤️<br><br>
+
+I only want you to have the best, and spending time with you is the only thing I want to do this Valentine's Day 💕<br><br>
+
+I love you so much Vikram 😘<br><br>
+
+Thanks for being mine ❤️<br><br>
+
+I'm missing you so much baby 🥺💋
+
+</p>
+
+<button class="btn" onclick="next()">Next 🌹</button>
+
+</div>
+
+<!-- SLIDE 4 ENDING -->
+
+<div class="slide">
+
+<h1>Forever yours, always and endlessly ❤️🌹</h1>
+
+<h2>— Nazneen</h2>
+
+</div>
+
+</div>
+
+<script>
+
+let index=0;
+
+function next(){
+index++;
+document.getElementById("slides").style.transform=
+"translateX(-"+(index*100)+"vw)";
+}
+
+/* mobile swipe */
+
+let startX=0;
+
+document.addEventListener("touchstart",e=>{
+startX=e.touches[0].clientX;
+});
+
+document.addEventListener("touchend",e=>{
+let endX=e.changedTouches[0].clientX;
+if(startX-endX>50) next();
+});
+
+/* falling roses */
+
+function createRose(){
+let r=document.createElement("div");
+r.className="rose";
+r.innerHTML="🌹";
+r.style.left=Math.random()*100+"vw";
+r.style.animationDuration=(7+Math.random()*6)+"s";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),12000);
+}
+
+setInterval(createRose,900);
+
+</script>
+
+</body>
+</html>
